@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://cak8hrbijhgrl"]
+
+[ext_resource type="Texture2D" uid="uid://cl2g64ot01k2q" path="res://art/player_front.png" id="1_1e2en"]
+[ext_resource type="Script" path="res://code/player.gd" id="1_6n21x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rrin8"]
+height = 1.5
+
+[sub_resource type="Animation" id="Animation_r1hno"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(10, 10, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_fwvjs"]
+resource_name = "wobble"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(10, 10, 10), Vector3(10.6, 10.6, 10.6), Vector3(10, 10, 10), Vector3(9.4, 9.4, 9.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vuw3q"]
+_data = {
+"RESET": SubResource("Animation_r1hno"),
+"wobble": SubResource("Animation_fwvjs")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sq7ft"]
+shading_mode = 0
+albedo_color = Color(0.929412, 0.847059, 0.741176, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2da2i"]
+material = SubResource("StandardMaterial3D_sq7ft")
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_6n21x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.754626, 0)
+shape = SubResource("CapsuleShape3D_rrin8")
+
+[node name="Parent" type="Node3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="Parent"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.0751219, 0)
+billboard = 1
+texture_filter = 0
+render_priority = 10
+texture = ExtResource("1_1e2en")
+region_rect = Rect2(0, 0, 15, 15.0793)
+
+[node name="Wobble" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vuw3q")
+}
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 25
+lifetime = 0.25
+lifetime_randomness = 0.11
+mesh = SubResource("SphereMesh_2da2i")
+direction = Vector3(-1, 0, 0)
+spread = 8.64
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.03
+scale_amount_max = 0.06

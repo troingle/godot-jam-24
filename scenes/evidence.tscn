@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs344lfjs1qns"]
+
+[ext_resource type="Script" path="res://code/evidence.gd" id="1_erqyp"]
+[ext_resource type="Texture2D" uid="uid://cc7e0d33wf3q" path="res://art/evidence.png" id="1_wdslp"]
+
+[node name="Evidence" type="Node3D"]
+transform = Transform3D(0.998603, 0.0395601, -0.0350343, -0.0372707, 0.99727, 0.0637506, 0.0374606, -0.0623558, 0.997351, 0, 0, 0)
+script = ExtResource("1_erqyp")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+texture_filter = 0
+render_priority = 5
+texture = ExtResource("1_wdslp")

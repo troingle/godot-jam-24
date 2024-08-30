@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1r7g06562paf"]
+
+[ext_resource type="Script" path="res://code/heart.gd" id="1_i770g"]
+[ext_resource type="Texture2D" uid="uid://ljn3y81q0qok" path="res://art/heart.png" id="2_abr6m"]
+
+[node name="Heart" type="Node3D" groups=["heart"]]
+transform = Transform3D(0.998603, 0.0395601, -0.0350343, -0.0372707, 0.99727, 0.0637506, 0.0374606, -0.0623558, 0.997351, 0, 0, 0)
+script = ExtResource("1_i770g")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.992937, -3.0268e-09, 7.45058e-09, -1.16415e-08, 0.992937, 0, 3.72529e-09, -3.72529e-09, 0.992937, 0, 0, 0)
+texture_filter = 0
+render_priority = 6
+texture = ExtResource("2_abr6m")
