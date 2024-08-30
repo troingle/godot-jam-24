@@ -1,0 +1,6 @@
+res://scenes/game.tscn
+res://code/game.gd
+res://code/saw.gd
+res://code/player.gd
+res://scenes/player.tscn
+res://code/heart.gd

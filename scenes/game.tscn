@@ -1,7 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://cfwvjtfusjlrm"]
+[gd_scene load_steps=37 format=4 uid="uid://cfwvjtfusjlrm"]
 
 [ext_resource type="Script" path="res://code/game.gd" id="1_11on1"]
-[ext_resource type="Texture2D" uid="uid://dfhhgiv1gn3t1" path="res://art/plane.png" id="1_knffo"]
+[ext_resource type="Texture2D" uid="uid://dk24feta27ks5" path="res://art/flat_plane.png" id="2_htrr6"]
 [ext_resource type="Texture2D" uid="uid://cipc8jsnqky24" path="res://art/judge.png" id="2_r2x5y"]
 [ext_resource type="PackedScene" uid="uid://cak8hrbijhgrl" path="res://scenes/player.tscn" id="2_y67t5"]
 [ext_resource type="PackedScene" uid="uid://cs344lfjs1qns" path="res://scenes/evidence.tscn" id="4_a35dw"]
@@ -9,7 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://162p14igebsq" path="res://art/warning.png" id="6_805gj"]
 [ext_resource type="Texture2D" uid="uid://b5isw85g1ar21" path="res://art/flash.png" id="7_pin6g"]
 [ext_resource type="FontFile" uid="uid://dcm4odg10o6gq" path="res://fonts/SHPinscher-Regular.otf" id="9_4vvxs"]
-[ext_resource type="PackedScene" uid="uid://d1r7g06562paf" path="res://scenes/heart.tscn" id="10_kodla"]
+[ext_resource type="Texture2D" uid="uid://cl4hc166cunl7" path="res://art/saw.png" id="9_b3v0s"]
+[ext_resource type="Script" path="res://code/saw.gd" id="9_s73er"]
 
 [sub_resource type="Environment" id="Environment_5unjc"]
 
@@ -71,12 +72,12 @@ _surfaces = [{
 "aabb": AABB(-1.37515, -5.91539, -4.879, 2.75031, 14.2377, 9.758),
 "format": 34896613377,
 "index_count": 216,
-"index_data": PackedByteArray(4, 0, 9, 0, 6, 0, 4, 0, 11, 0, 9, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0, 10, 0, 9, 0, 11, 0, 10, 0, 8, 0, 9, 0, 2, 0, 10, 0, 0, 0, 2, 0, 8, 0, 10, 0, 0, 0, 11, 0, 4, 0, 0, 0, 10, 0, 11, 0, 2, 0, 14, 0, 8, 0, 2, 0, 12, 0, 14, 0, 15, 0, 17, 0, 13, 0, 15, 0, 19, 0, 17, 0, 6, 0, 12, 0, 2, 0, 6, 0, 13, 0, 12, 0, 9, 0, 13, 0, 6, 0, 9, 0, 15, 0, 13, 0, 8, 0, 15, 0, 9, 0, 8, 0, 14, 0, 15, 0, 17, 0, 18, 0, 16, 0, 17, 0, 19, 0, 18, 0, 13, 0, 16, 0, 12, 0, 13, 0, 17, 0, 16, 0, 12, 0, 18, 0, 14, 0, 12, 0, 16, 0, 18, 0, 14, 0, 19, 0, 15, 0, 14, 0, 18, 0, 19, 0, 6, 0, 11, 0, 9, 0, 6, 0, 4, 0, 11, 0, 1, 0, 4, 0, 5, 0, 1, 0, 0, 0, 4, 0, 5, 0, 6, 0, 7, 0, 5, 0, 4, 0, 6, 0, 7, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 3, 0, 0, 0, 1, 0, 3, 0, 2, 0, 0, 0, 7, 0, 2, 0, 3, 0, 7, 0, 6, 0, 2, 0, 8, 0, 11, 0, 10, 0, 8, 0, 9, 0, 11, 0, 0, 0, 8, 0, 10, 0, 0, 0, 2, 0, 8, 0, 2, 0, 9, 0, 8, 0, 2, 0, 6, 0, 9, 0, 0, 0, 22, 0, 20, 0, 0, 0, 10, 0, 22, 0, 23, 0, 25, 0, 27, 0, 23, 0, 21, 0, 25, 0, 4, 0, 20, 0, 21, 0, 4, 0, 0, 0, 20, 0, 11, 0, 21, 0, 23, 0, 11, 0, 4, 0, 21, 0, 10, 0, 23, 0, 22, 0, 10, 0, 11, 0, 23, 0, 25, 0, 26, 0, 27, 0, 25, 0, 24, 0, 26, 0, 21, 0, 24, 0, 25, 0, 21, 0, 20, 0, 24, 0, 20, 0, 26, 0, 24, 0, 20, 0, 22, 0, 26, 0, 22, 0, 27, 0, 26, 0, 22, 0, 23, 0, 27, 0),
+"index_data": PackedByteArray("BAAJAAYABAALAAkAAwAGAAIAAwAHAAYABwAEAAYABwAFAAQABQADAAEABQAHAAMAAQACAAAAAQADAAIABQAAAAQABQABAAAACgAJAAsACgAIAAkAAgAKAAAAAgAIAAoAAAALAAQAAAAKAAsAAgAOAAgAAgAMAA4ADwARAA0ADwATABEABgAMAAIABgANAAwACQANAAYACQAPAA0ACAAPAAkACAAOAA8AEQASABAAEQATABIADQAQAAwADQARABAADAASAA4ADAAQABIADgATAA8ADgASABMABgALAAkABgAEAAsAAQAEAAUAAQAAAAQABQAGAAcABQAEAAYABwABAAUABwADAAEAAwAAAAEAAwACAAAABwACAAMABwAGAAIACAALAAoACAAJAAsAAAAIAAoAAAACAAgAAgAJAAgAAgAGAAkAAAAWABQAAAAKABYAFwAZABsAFwAVABkABAAUABUABAAAABQACwAVABcACwAEABUACgAXABYACgALABcAGQAaABsAGQAYABoAFQAYABkAFQAUABgAFAAaABgAFAAWABoAFgAbABoAFgAXABsA"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(19, 221, 184, 212, 195, 101, 0, 0, 19, 221, 0, 0, 195, 101, 0, 0, 19, 221, 184, 212, 59, 154, 0, 0, 19, 221, 0, 0, 59, 154, 0, 0, 235, 34, 184, 212, 195, 101, 0, 0, 235, 34, 0, 0, 195, 101, 0, 0, 235, 34, 184, 212, 59, 154, 0, 0, 235, 34, 0, 0, 59, 154, 0, 0, 19, 221, 41, 249, 59, 154, 0, 0, 235, 34, 41, 249, 59, 154, 0, 0, 19, 221, 41, 249, 195, 101, 0, 0, 235, 34, 41, 249, 195, 101, 0, 0, 19, 221, 184, 212, 182, 233, 0, 0, 235, 34, 184, 212, 182, 233, 0, 0, 19, 221, 41, 249, 182, 233, 0, 0, 235, 34, 41, 249, 182, 233, 0, 0, 255, 255, 226, 205, 255, 255, 0, 0, 0, 0, 226, 205, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 19, 221, 184, 212, 72, 22, 0, 0, 235, 34, 184, 212, 72, 22, 0, 0, 19, 221, 41, 249, 72, 22, 0, 0, 235, 34, 41, 249, 72, 22, 0, 0, 255, 255, 226, 205, 0, 0, 0, 0, 0, 0, 226, 205, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+"vertex_data": PackedByteArray("E9241MNlAAAT3QAAw2UAABPduNQ7mgAAE90AADuaAADrIrjUw2UAAOsiAADDZQAA6yK41DuaAADrIgAAO5oAABPdKfk7mgAA6yIp+TuaAAAT3Sn5w2UAAOsiKfnDZQAAE9241LbpAADrIrjUtukAABPdKfm26QAA6yIp+bbpAAD//+LN//8AAAAA4s3//wAA////////AAAAAP////8AABPduNRIFgAA6yK41EgWAAAT3Sn5SBYAAOsiKflIFgAA///izQAAAAAAAOLNAAAAAP////8AAAAAAAD//wAAAAA=")
 }]
 blend_shape_mode = 0
 
@@ -84,16 +85,16 @@ blend_shape_mode = 0
 resource_name = "gavel_Cube"
 _surfaces = [{
 "aabb": AABB(-1.37515, -5.91539, -4.879, 2.75031, 14.2377, 9.758),
-"attribute_data": PackedByteArray(248, 64, 166, 104, 248, 64, 166, 104, 153, 81, 45, 218, 153, 81, 45, 218, 153, 81, 45, 218, 223, 37, 184, 37, 223, 37, 184, 37, 223, 37, 184, 37, 82, 38, 43, 97, 95, 62, 92, 251, 71, 38, 249, 255, 95, 62, 92, 251, 238, 89, 175, 102, 238, 89, 175, 102, 4, 99, 116, 215, 4, 99, 116, 215, 4, 99, 116, 215, 145, 1, 189, 37, 37, 120, 133, 85, 145, 1, 189, 37, 145, 1, 189, 37, 37, 120, 249, 255, 37, 120, 249, 255, 100, 1, 241, 255, 71, 38, 5, 0, 239, 51, 69, 64, 71, 38, 5, 0, 239, 51, 69, 64, 5, 0, 121, 1, 140, 89, 48, 59, 5, 0, 121, 1, 140, 89, 48, 59, 28, 70, 115, 87, 28, 70, 115, 87, 28, 70, 115, 87, 227, 81, 82, 83, 227, 81, 82, 83, 227, 81, 82, 83, 39, 19, 115, 19, 39, 19, 115, 19, 39, 19, 115, 19, 39, 19, 115, 19, 30, 18, 119, 18, 30, 18, 119, 18, 30, 18, 119, 18, 30, 18, 119, 18, 22, 20, 93, 18, 22, 20, 93, 18, 22, 20, 93, 18, 22, 20, 93, 18, 232, 18, 156, 17, 232, 18, 156, 17, 232, 18, 156, 17, 232, 18, 156, 17, 237, 18, 186, 18, 237, 18, 186, 18, 237, 18, 186, 18, 145, 18, 121, 18, 145, 18, 121, 18, 145, 18, 121, 18, 24, 19, 115, 18, 24, 19, 115, 18, 24, 19, 115, 18, 222, 18, 54, 18, 222, 18, 54, 18, 222, 18, 54, 18, 248, 64, 166, 104, 248, 64, 166, 104, 153, 81, 45, 218, 153, 81, 45, 218, 153, 81, 45, 218, 223, 37, 184, 37, 223, 37, 184, 37, 223, 37, 184, 37, 82, 38, 43, 97, 95, 62, 92, 251, 71, 38, 249, 255, 95, 62, 92, 251, 238, 89, 175, 102, 238, 89, 175, 102, 4, 99, 116, 215, 4, 99, 116, 215, 4, 99, 116, 215, 145, 1, 189, 37, 37, 120, 133, 85, 145, 1, 189, 37, 145, 1, 189, 37, 37, 120, 249, 255, 37, 120, 249, 255, 100, 1, 241, 255, 71, 38, 5, 0, 239, 51, 69, 64, 71, 38, 5, 0, 239, 51, 69, 64, 5, 0, 121, 1, 140, 89, 48, 59, 5, 0, 121, 1, 140, 89, 48, 59, 28, 70, 115, 87, 28, 70, 115, 87, 28, 70, 115, 87, 227, 81, 82, 83, 227, 81, 82, 83, 227, 81, 82, 83, 39, 19, 115, 19, 39, 19, 115, 19, 39, 19, 115, 19, 39, 19, 115, 19, 30, 18, 119, 18, 30, 18, 119, 18, 30, 18, 119, 18, 30, 18, 119, 18, 22, 20, 93, 18, 22, 20, 93, 18, 22, 20, 93, 18, 22, 20, 93, 18, 232, 18, 156, 17, 232, 18, 156, 17, 232, 18, 156, 17, 232, 18, 156, 17, 237, 18, 186, 18, 237, 18, 186, 18, 237, 18, 186, 18, 145, 18, 121, 18, 145, 18, 121, 18, 145, 18, 121, 18, 24, 19, 115, 18, 24, 19, 115, 18, 24, 19, 115, 18, 222, 18, 54, 18, 222, 18, 54, 18, 222, 18, 54, 18),
+"attribute_data": PackedByteArray("+ECmaPhApmiZUS3amVEt2plRLdrfJbgl3yW4Jd8luCVSJithXz5c+0cm+f9fPlz77lmvZu5Zr2YEY3TXBGN01wRjdNeRAb0lJXiFVZEBvSWRAb0lJXj5/yV4+f9kAfH/RyYFAO8zRUBHJgUA7zNFQAUAeQGMWTA7BQB5AYxZMDscRnNXHEZzVxxGc1fjUVJT41FSU+NRUlMnE3MTJxNzEycTcxMnE3MTHhJ3Eh4SdxIeEncSHhJ3EhYUXRIWFF0SFhRdEhYUXRLoEpwR6BKcEegSnBHoEpwR7RK6Eu0SuhLtEroSkRJ5EpESeRKREnkSGBNzEhgTcxIYE3MS3hI2Et4SNhLeEjYS+ECmaPhApmiZUS3amVEt2plRLdrfJbgl3yW4Jd8luCVSJithXz5c+0cm+f9fPlz77lmvZu5Zr2YEY3TXBGN01wRjdNeRAb0lJXiFVZEBvSWRAb0lJXj5/yV4+f9kAfH/RyYFAO8zRUBHJgUA7zNFQAUAeQGMWTA7BQB5AYxZMDscRnNXHEZzVxxGc1fjUVJT41FSU+NRUlMnE3MTJxNzEycTcxMnE3MTHhJ3Eh4SdxIeEncSHhJ3EhYUXRIWFF0SFhRdEhYUXRLoEpwR6BKcEegSnBHoEpwR7RK6Eu0SuhLtEroSkRJ5EpESeRKREnkSGBNzEhgTcxIYE3MS3hI2Et4SNhLeEjYS"),
 "format": 34896613399,
 "index_count": 216,
-"index_data": PackedByteArray(12, 0, 29, 0, 18, 0, 12, 0, 35, 0, 29, 0, 10, 0, 20, 0, 6, 0, 10, 0, 23, 0, 20, 0, 21, 0, 12, 0, 18, 0, 21, 0, 14, 0, 12, 0, 15, 0, 9, 0, 2, 0, 15, 0, 22, 0, 9, 0, 4, 0, 8, 0, 1, 0, 4, 0, 11, 0, 8, 0, 16, 0, 0, 0, 13, 0, 16, 0, 3, 0, 0, 0, 33, 0, 31, 0, 37, 0, 33, 0, 25, 0, 31, 0, 8, 0, 34, 0, 1, 0, 8, 0, 27, 0, 34, 0, 0, 0, 36, 0, 13, 0, 0, 0, 32, 0, 36, 0, 7, 0, 49, 0, 26, 0, 7, 0, 41, 0, 49, 0, 51, 0, 57, 0, 43, 0, 51, 0, 63, 0, 57, 0, 19, 0, 38, 0, 5, 0, 19, 0, 44, 0, 38, 0, 28, 0, 42, 0, 17, 0, 28, 0, 50, 0, 42, 0, 24, 0, 53, 0, 30, 0, 24, 0, 47, 0, 53, 0, 59, 0, 60, 0, 55, 0, 59, 0, 64, 0, 60, 0, 45, 0, 54, 0, 39, 0, 45, 0, 58, 0, 54, 0, 40, 0, 62, 0, 48, 0, 40, 0, 56, 0, 62, 0, 46, 0, 65, 0, 52, 0, 46, 0, 61, 0, 65, 0, 78, 0, 95, 0, 101, 0, 78, 0, 84, 0, 95, 0, 76, 0, 86, 0, 89, 0, 76, 0, 72, 0, 86, 0, 87, 0, 78, 0, 80, 0, 87, 0, 84, 0, 78, 0, 81, 0, 75, 0, 88, 0, 81, 0, 68, 0, 75, 0, 70, 0, 74, 0, 77, 0, 70, 0, 67, 0, 74, 0, 82, 0, 66, 0, 69, 0, 82, 0, 79, 0, 66, 0, 99, 0, 97, 0, 91, 0, 99, 0, 103, 0, 97, 0, 74, 0, 100, 0, 93, 0, 74, 0, 67, 0, 100, 0, 66, 0, 102, 0, 98, 0, 66, 0, 79, 0, 102, 0, 73, 0, 115, 0, 107, 0, 73, 0, 92, 0, 115, 0, 117, 0, 123, 0, 129, 0, 117, 0, 109, 0, 123, 0, 85, 0, 104, 0, 110, 0, 85, 0, 71, 0, 104, 0, 94, 0, 108, 0, 116, 0, 94, 0, 83, 0, 108, 0, 90, 0, 119, 0, 113, 0, 90, 0, 96, 0, 119, 0, 125, 0, 126, 0, 130, 0, 125, 0, 121, 0, 126, 0, 111, 0, 120, 0, 124, 0, 111, 0, 105, 0, 120, 0, 106, 0, 128, 0, 122, 0, 106, 0, 114, 0, 128, 0, 112, 0, 131, 0, 127, 0, 112, 0, 118, 0, 131, 0),
+"index_data": PackedByteArray("DAAdABIADAAjAB0ACgAUAAYACgAXABQAFQAMABIAFQAOAAwADwAJAAIADwAWAAkABAAIAAEABAALAAgAEAAAAA0AEAADAAAAIQAfACUAIQAZAB8ACAAiAAEACAAbACIAAAAkAA0AAAAgACQABwAxABoABwApADEAMwA5ACsAMwA/ADkAEwAmAAUAEwAsACYAHAAqABEAHAAyACoAGAA1AB4AGAAvADUAOwA8ADcAOwBAADwALQA2ACcALQA6ADYAKAA+ADAAKAA4AD4ALgBBADQALgA9AEEATgBfAGUATgBUAF8ATABWAFkATABIAFYAVwBOAFAAVwBUAE4AUQBLAFgAUQBEAEsARgBKAE0ARgBDAEoAUgBCAEUAUgBPAEIAYwBhAFsAYwBnAGEASgBkAF0ASgBDAGQAQgBmAGIAQgBPAGYASQBzAGsASQBcAHMAdQB7AIEAdQBtAHsAVQBoAG4AVQBHAGgAXgBsAHQAXgBTAGwAWgB3AHEAWgBgAHcAfQB+AIIAfQB5AH4AbwB4AHwAbwBpAHgAagCAAHoAagByAIAAcACDAH8AcAB2AIMA"),
 "material": SubResource("StandardMaterial3D_wjwy1"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 132,
-"vertex_data": PackedByteArray(19, 221, 184, 212, 195, 101, 255, 255, 19, 221, 184, 212, 195, 101, 141, 193, 19, 221, 0, 0, 195, 101, 163, 253, 19, 221, 0, 0, 195, 101, 255, 255, 19, 221, 0, 0, 195, 101, 32, 198, 19, 221, 184, 212, 59, 154, 255, 191, 19, 221, 184, 212, 59, 154, 255, 127, 19, 221, 184, 212, 59, 154, 202, 192, 19, 221, 184, 212, 59, 154, 142, 193, 19, 221, 0, 0, 59, 154, 138, 255, 19, 221, 0, 0, 59, 154, 6, 128, 19, 221, 0, 0, 59, 154, 213, 199, 235, 34, 184, 212, 195, 101, 60, 197, 235, 34, 184, 212, 195, 101, 255, 255, 235, 34, 0, 0, 195, 101, 178, 198, 235, 34, 0, 0, 195, 101, 138, 255, 235, 34, 0, 0, 195, 101, 255, 255, 235, 34, 184, 212, 59, 154, 44, 193, 235, 34, 184, 212, 59, 154, 139, 196, 235, 34, 184, 212, 59, 154, 1, 192, 235, 34, 184, 212, 59, 154, 4, 128, 235, 34, 0, 0, 59, 154, 160, 200, 235, 34, 0, 0, 59, 154, 187, 252, 235, 34, 0, 0, 59, 154, 6, 128, 19, 221, 41, 249, 59, 154, 9, 192, 19, 221, 41, 249, 59, 154, 201, 249, 19, 221, 41, 249, 59, 154, 255, 192, 19, 221, 41, 249, 59, 154, 203, 195, 235, 34, 41, 249, 59, 154, 175, 192, 235, 34, 41, 249, 59, 154, 117, 197, 235, 34, 41, 249, 59, 154, 47, 192, 235, 34, 41, 249, 59, 154, 115, 250, 19, 221, 41, 249, 195, 101, 255, 255, 19, 221, 41, 249, 195, 101, 115, 250, 19, 221, 41, 249, 195, 101, 172, 194, 235, 34, 41, 249, 195, 101, 88, 197, 235, 34, 41, 249, 195, 101, 255, 255, 235, 34, 41, 249, 195, 101, 29, 251, 19, 221, 184, 212, 182, 233, 5, 192, 19, 221, 184, 212, 182, 233, 144, 210, 19, 221, 184, 212, 182, 233, 52, 218, 19, 221, 184, 212, 182, 233, 71, 211, 235, 34, 184, 212, 182, 233, 148, 199, 235, 34, 184, 212, 182, 233, 6, 209, 235, 34, 184, 212, 182, 233, 14, 192, 235, 34, 184, 212, 182, 233, 135, 227, 19, 221, 41, 249, 182, 233, 144, 226, 19, 221, 41, 249, 182, 233, 9, 192, 19, 221, 41, 249, 182, 233, 195, 210, 19, 221, 41, 249, 182, 233, 139, 199, 235, 34, 41, 249, 182, 233, 125, 211, 235, 34, 41, 249, 182, 233, 127, 216, 235, 34, 41, 249, 182, 233, 252, 209, 235, 34, 41, 249, 182, 233, 255, 191, 255, 255, 226, 205, 255, 255, 52, 214, 255, 255, 226, 205, 255, 255, 111, 158, 255, 255, 226, 205, 255, 255, 180, 221, 0, 0, 226, 205, 255, 255, 169, 209, 0, 0, 226, 205, 255, 255, 230, 231, 0, 0, 226, 205, 255, 255, 184, 159, 255, 255, 255, 255, 255, 255, 32, 157, 255, 255, 255, 255, 255, 255, 99, 219, 255, 255, 255, 255, 255, 255, 246, 208, 0, 0, 255, 255, 255, 255, 27, 212, 0, 0, 255, 255, 255, 255, 106, 158, 0, 0, 255, 255, 255, 255, 62, 209, 19, 221, 184, 212, 59, 154, 146, 251, 19, 221, 184, 212, 59, 154, 179, 244, 19, 221, 0, 0, 59, 154, 163, 253, 19, 221, 0, 0, 59, 154, 101, 250, 19, 221, 0, 0, 59, 154, 102, 233, 19, 221, 184, 212, 195, 101, 255, 191, 19, 221, 184, 212, 195, 101, 255, 255, 19, 221, 184, 212, 195, 101, 238, 247, 19, 221, 184, 212, 195, 101, 177, 244, 19, 221, 0, 0, 195, 101, 138, 255, 19, 221, 0, 0, 195, 101, 255, 255, 19, 221, 0, 0, 195, 101, 98, 230, 235, 34, 184, 212, 59, 154, 34, 235, 235, 34, 184, 212, 59, 154, 127, 250, 235, 34, 0, 0, 59, 154, 90, 232, 235, 34, 0, 0, 59, 154, 138, 255, 235, 34, 0, 0, 59, 154, 57, 250, 235, 34, 184, 212, 195, 101, 45, 246, 235, 34, 184, 212, 195, 101, 148, 236, 235, 34, 184, 212, 195, 101, 1, 192, 235, 34, 184, 212, 195, 101, 255, 255, 235, 34, 0, 0, 195, 101, 23, 229, 235, 34, 0, 0, 195, 101, 187, 252, 235, 34, 0, 0, 195, 101, 255, 255, 19, 221, 41, 249, 195, 101, 9, 192, 19, 221, 41, 249, 195, 101, 201, 249, 19, 221, 41, 249, 195, 101, 243, 246, 19, 221, 41, 249, 195, 101, 70, 238, 235, 34, 41, 249, 195, 101, 126, 248, 235, 34, 41, 249, 195, 101, 176, 234, 235, 34, 41, 249, 195, 101, 47, 192, 235, 34, 41, 249, 195, 101, 115, 250, 19, 221, 41, 249, 59, 154, 75, 249, 19, 221, 41, 249, 59, 154, 115, 250, 19, 221, 41, 249, 59, 154, 37, 241, 235, 34, 41, 249, 59, 154, 235, 234, 235, 34, 41, 249, 59, 154, 83, 247, 235, 34, 41, 249, 59, 154, 29, 251, 19, 221, 184, 212, 72, 22, 5, 192, 19, 221, 184, 212, 72, 22, 39, 178, 19, 221, 184, 212, 72, 22, 46, 215, 19, 221, 184, 212, 72, 22, 113, 215, 235, 34, 184, 212, 72, 22, 208, 230, 235, 34, 184, 212, 72, 22, 46, 252, 235, 34, 184, 212, 72, 22, 14, 192, 235, 34, 184, 212, 72, 22, 167, 210, 19, 221, 41, 249, 72, 22, 255, 208, 19, 221, 41, 249, 72, 22, 9, 192, 19, 221, 41, 249, 72, 22, 12, 238, 19, 221, 41, 249, 72, 22, 222, 230, 235, 34, 41, 249, 72, 22, 56, 215, 235, 34, 41, 249, 72, 22, 48, 219, 235, 34, 41, 249, 72, 22, 213, 176, 235, 34, 41, 249, 72, 22, 255, 191, 255, 255, 226, 205, 0, 0, 1, 186, 255, 255, 226, 205, 0, 0, 255, 255, 255, 255, 226, 205, 0, 0, 250, 207, 0, 0, 226, 205, 0, 0, 190, 244, 0, 0, 226, 205, 0, 0, 254, 217, 0, 0, 226, 205, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 38, 196, 255, 255, 255, 255, 0, 0, 249, 253, 0, 0, 255, 255, 0, 0, 79, 232, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 25, 175, 102, 121, 101, 249, 133, 91, 60, 18, 183, 62, 110, 253, 193, 119, 193, 247, 53, 157, 108, 58, 55, 0, 227, 127, 255, 127, 255, 127, 211, 99, 21, 14, 130, 91, 62, 18, 126, 127, 64, 64, 255, 255, 255, 255, 140, 159, 25, 63, 55, 100, 110, 200, 229, 119, 229, 247, 21, 188, 243, 225, 126, 127, 64, 64, 132, 119, 132, 247, 149, 111, 42, 223, 119, 101, 238, 202, 182, 1, 108, 131, 255, 127, 255, 127, 255, 192, 126, 223, 119, 124, 195, 65, 255, 255, 255, 255, 126, 248, 191, 131, 72, 195, 146, 6, 105, 143, 212, 30, 2, 78, 254, 24, 151, 154, 179, 242, 215, 99, 174, 199, 176, 240, 166, 135, 242, 194, 229, 5, 64, 118, 64, 246, 242, 194, 229, 5, 163, 83, 45, 22, 8, 100, 17, 200, 165, 115, 164, 243, 154, 194, 55, 5, 234, 2, 212, 133, 218, 21, 3, 164, 100, 59, 138, 41, 57, 45, 99, 41, 115, 190, 196, 224, 108, 121, 35, 245, 147, 4, 38, 137, 19, 52, 209, 213, 219, 204, 183, 43, 64, 252, 129, 120, 231, 151, 124, 39, 159, 65, 47, 31, 11, 211, 121, 214, 64, 192, 23, 217, 32, 238, 139, 98, 148, 254, 180, 128, 57, 34, 102, 184, 255, 255, 255, 255, 243, 51, 12, 46, 70, 111, 96, 228, 18, 56, 105, 220, 255, 255, 255, 255, 255, 255, 255, 255, 248, 212, 23, 57, 156, 131, 248, 5, 14, 176, 229, 226, 255, 255, 255, 255, 185, 248, 2, 116, 255, 127, 255, 127, 152, 11, 51, 58, 110, 125, 72, 65, 255, 127, 255, 127, 228, 180, 202, 105, 27, 0, 55, 128, 248, 255, 248, 127, 111, 8, 200, 59, 154, 11, 50, 58, 191, 63, 126, 255, 241, 255, 12, 128, 123, 179, 248, 102, 76, 74, 152, 148, 255, 127, 255, 127, 207, 232, 150, 203, 191, 63, 126, 255, 255, 127, 255, 127, 20, 69, 41, 138, 160, 73, 64, 147, 109, 3, 72, 126, 245, 255, 245, 127, 191, 229, 30, 205, 59, 62, 119, 252, 243, 255, 10, 128, 62, 252, 127, 120, 146, 134, 181, 188, 75, 187, 151, 118, 172, 17, 41, 55, 30, 248, 239, 195, 129, 74, 2, 149, 87, 248, 177, 112, 229, 133, 12, 189, 255, 127, 255, 127, 229, 133, 12, 189, 251, 14, 129, 56, 101, 74, 203, 148, 255, 127, 255, 127, 54, 133, 99, 189, 212, 5, 21, 125, 52, 48, 10, 109, 173, 27, 147, 39, 46, 40, 232, 43, 94, 231, 79, 204, 153, 78, 200, 130, 39, 9, 107, 123, 20, 97, 211, 89, 51, 160, 170, 165, 129, 248, 190, 131, 161, 173, 171, 115, 147, 24, 182, 51, 142, 215, 55, 212, 40, 231, 76, 215, 153, 215, 226, 143, 73, 255, 148, 126, 58, 70, 98, 100, 244, 219, 9, 164, 41, 33, 105, 37, 158, 80, 229, 135, 111, 102, 183, 87, 194, 218, 59, 165, 47, 221, 206, 162, 226, 171, 18, 161, 232, 177, 132, 126, 235, 239, 215, 211, 249, 219, 5, 164, 101, 238, 235, 134)
+"vertex_data": PackedByteArray("E9241MNl//8T3bjUw2WNwRPdAADDZaP9E90AAMNl//8T3QAAw2UgxhPduNQ7mv+/E9241Dua/38T3bjUO5rKwBPduNQ7mo7BE90AADuaiv8T3QAAO5oGgBPdAAA7mtXH6yK41MNlPMXrIrjUw2X//+siAADDZbLG6yIAAMNliv/rIgAAw2X//+siuNQ7mizB6yK41Duai8TrIrjUO5oBwOsiuNQ7mgSA6yIAADuaoMjrIgAAO5q7/OsiAAA7mgaAE90p+TuaCcAT3Sn5O5rJ+RPdKfk7mv/AE90p+Tuay8PrIin5O5qvwOsiKfk7mnXF6yIp+TuaL8DrIin5O5pz+hPdKfnDZf//E90p+cNlc/oT3Sn5w2WswusiKfnDZVjF6yIp+cNl///rIin5w2Ud+xPduNS26QXAE9241LbpkNIT3bjUtuk02hPduNS26UfT6yK41LbplMfrIrjUtukG0esiuNS26Q7A6yK41Lbph+MT3Sn5tumQ4hPdKfm26QnAE90p+bbpw9IT3Sn5tumLx+siKfm26X3T6yIp+bbpf9jrIin5tun80esiKfm26f+////izf//NNb//+LN//9vnv//4s3//7TdAADizf//qdEAAOLN///m5wAA4s3//7if////////IJ3///////9j2/////////bQAAD/////G9QAAP////9qngAA/////z7RE9241DuakvsT3bjUO5qz9BPdAAA7mqP9E90AADuaZfoT3QAAO5pm6RPduNTDZf+/E9241MNl//8T3bjUw2Xu9xPduNTDZbH0E90AAMNliv8T3QAAw2X//xPdAADDZWLm6yK41DuaIuvrIrjUO5p/+usiAAA7mlro6yIAADuaiv/rIgAAO5o5+usiuNTDZS326yK41MNllOzrIrjUw2UBwOsiuNTDZf//6yIAAMNlF+XrIgAAw2W7/OsiAADDZf//E90p+cNlCcAT3Sn5w2XJ+RPdKfnDZfP2E90p+cNlRu7rIin5w2V++OsiKfnDZbDq6yIp+cNlL8DrIin5w2Vz+hPdKfk7mkv5E90p+Tuac/oT3Sn5O5ol8esiKfk7muvq6yIp+TuaU/frIin5O5od+xPduNRIFgXAE9241EgWJ7IT3bjUSBYu1xPduNRIFnHX6yK41EgW0ObrIrjUSBYu/OsiuNRIFg7A6yK41EgWp9IT3Sn5SBb/0BPdKflIFgnAE90p+UgWDO4T3Sn5SBbe5usiKflIFjjX6yIp+UgWMNvrIin5SBbVsOsiKflIFv+////izQAAAbr//+LNAAD/////4s0AAPrPAADizQAAvvQAAOLNAAD+2QAA4s0AAP///////wAA////////AAAmxP////8AAPn9AAD//wAAT+gAAP//AAD//wAA//8AABmvZnll+YVbPBK3Pm79wXfB9zWdbDo3AON//3//f9NjFQ6CWz4Sfn9AQP////+Mnxk/N2RuyOV35fcVvPPhfn9AQIR3hPeVbyrfd2XuyrYBbIP/f/9//8B+33d8w0H/////fvi/g0jDkgZpj9QeAk7+GJeas/LXY67HsPCmh/LC5QVAdkD28sLlBaNTLRYIZBHIpXOk85rCNwXqAtSF2hUDpGQ7iik5LWMpc77E4Gx5I/WTBCaJEzTR1dvMtytA/IF455d8J59BLx8L03nWQMAX2SDui2KU/rSAOSJmuP/////zMwwuRm9g5BI4adz///////////jUFzmcg/gFDrDl4v////+5+AJ0/3//f5gLMzpufUhB/3//f+S0ymkbADeA+P/4f28IyDuaCzI6vz9+//H/DIB7s/hmTEqYlP9//3/P6JbLvz9+//9//38URSmKoElAk20DSH71//V/v+UezTs+d/zz/wqAPvx/eJKGtbxLu5d2rBEpNx7478OBSgKVV/ixcOWFDL3/f/9/5YUMvfsOgThlSsuU/3//fzaFY73UBRV9NDAKba0bkycuKOgrXudPzJlOyIInCWt7FGHTWTOgqqWB+L6Doa2rc5MYtjOO1zfUKOdM15nX4o9J/5R+OkZiZPTbCaQpIWklnlDlh29mt1fC2julL93OouKrEqHosYR+6+/X0/nbBaRl7uuG")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_i0k4u")
@@ -101,21 +102,6 @@ shadow_mesh = SubResource("ArrayMesh_i0k4u")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r745k"]
 shading_mode = 0
 albedo_color = Color(0.929412, 0.847059, 0.741176, 1)
-
-[sub_resource type="Animation" id="Animation_2x5ht"]
-resource_name = "smash1"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Gavel:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -7.10543e-15, 0), Vector3(7.02991e-15, -1.0332e-15, 1.42487), Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_3dh0l"]
 length = 0.001
@@ -154,6 +140,21 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, -7.10543e-15, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2x5ht"]
+resource_name = "smash1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gavel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -7.10543e-15, 0), Vector3(7.02991e-15, -1.0332e-15, 1.42487), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_r24we"]
@@ -230,6 +231,21 @@ _data = {
 "smash3": SubResource("Animation_2tddn")
 }
 
+[sub_resource type="Animation" id="Animation_pbqfo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_8u80b"]
 resource_name = "move_in"
 length = 0.5
@@ -244,21 +260,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(1.9, 0, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pbqfo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(2, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_560yt"]
@@ -282,22 +283,6 @@ _data = {
 "RESET": SubResource("Animation_pbqfo"),
 "move_in": SubResource("Animation_8u80b"),
 "move_out": SubResource("Animation_560yt")
-}
-
-[sub_resource type="Animation" id="Animation_0t3ut"]
-resource_name = "flash1"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flash1:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_c5r3h"]
@@ -337,6 +322,22 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0t3ut"]
+resource_name = "flash1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_mqxdc"]
@@ -422,7 +423,6 @@ script = ExtResource("1_11on1")
 
 [node name="GavelWait" type="Timer" parent="GameManager"]
 wait_time = 2.0
-autostart = true
 
 [node name="WarningShowTimer" type="Timer" parent="GameManager"]
 wait_time = 0.2
@@ -464,7 +464,7 @@ shape = SubResource("BoxShape3D_krf1e")
 [node name="Sprite3D" type="Sprite3D" parent="Ground"]
 transform = Transform3D(2.77772, 0, 0, 0, -1.21418e-07, 2.77772, 0, -2.77772, -1.21418e-07, 0, 0.0125826, 0)
 texture_filter = 0
-texture = ExtResource("1_knffo")
+texture = ExtResource("2_htrr6")
 
 [node name="Player" parent="." instance=ExtResource("2_y67t5")]
 transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, 0, 0, 0.152097)
@@ -482,17 +482,16 @@ libraries = {
 autoplay = "hover"
 
 [node name="EvidenceParent" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.814358, 0, 0.778765)
 
 [node name="Evidence" parent="EvidenceParent" instance=ExtResource("4_a35dw")]
 transform = Transform3D(0.998603, 0.0395601, -0.0350343, -0.0372707, 0.99727, 0.0637506, 0.0374606, -0.0623558, 0.997351, 0.824299, 0, 0.17079)
 
 [node name="HeartParent" type="Node3D" parent="."]
 
-[node name="Heart" parent="HeartParent" instance=ExtResource("10_kodla")]
-transform = Transform3D(0.998603, 0.0395601, -0.0350343, -0.0372707, 0.99727, 0.0637506, 0.0374606, -0.0623558, 0.997351, -1.44931, 0.144302, 0.397379)
-
 [node name="GavelStuff" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+visible = false
 
 [node name="Gavel" type="Node3D" parent="GavelStuff"]
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 2.30418, 0.490603, 0.0413621)
@@ -536,7 +535,6 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_mbpgj")
 }
-autoplay = "move_in"
 
 [node name="Warning1" type="Sprite3D" parent="GavelStuff"]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.33749, 0.0649612, 0.0419209)
@@ -586,6 +584,27 @@ libraries = {
 "": SubResource("AnimationLibrary_1ysrt")
 }
 
+[node name="Sawblade" type="Node3D" parent="."]
+transform = Transform3D(0.737782, 0, 0, 0, 0.737782, 0, 0, 0, 0.737782, -4.63148, 0.0389676, 0.890289)
+script = ExtResource("9_s73er")
+
+[node name="Sprite3D" type="Sprite3D" parent="Sawblade"]
+transform = Transform3D(1.14984, 0, 0, 0, 0.2976, 1.11066, 0, -1.11066, 0.2976, 0, 0, 0)
+texture_filter = 0
+render_priority = 2
+texture = ExtResource("9_b3v0s")
+
+[node name="BigSaw" type="Node3D" parent="."]
+transform = Transform3D(1.67179, 0, 0, 0, 1.67179, 0, 0, 0, 1.67179, -4.67609, 0, 0.900186)
+script = ExtResource("9_s73er")
+speed = 0.6
+
+[node name="Sprite3D" type="Sprite3D" parent="BigSaw"]
+transform = Transform3D(1.14984, 0, 0, 0, 0.2976, 1.11066, 0, -1.11066, 0.2976, 0, 0, 0)
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("9_b3v0s")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Heart" type="Sprite2D" parent="CanvasLayer"]
@@ -603,6 +622,12 @@ texture = ExtResource("5_euh3a")
 [node name="Heart3" type="Sprite2D" parent="CanvasLayer"]
 texture_filter = 1
 position = Vector2(178, 42)
+scale = Vector2(1.51984, 1.51984)
+texture = ExtResource("5_euh3a")
+
+[node name="Heart4" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(246, 42)
 scale = Vector2(1.51984, 1.51984)
 texture = ExtResource("5_euh3a")
 

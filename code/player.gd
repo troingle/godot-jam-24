@@ -14,6 +14,8 @@ extends CharacterBody3D
 
 @onready var game = $"../GameManager"
 
+@onready var hurt_timer = $HurtTimer
+
 const SPEED = 2.5
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -22,6 +24,7 @@ var side = 1
 var rng = RandomNumberGenerator.new()
 
 var hp = 3
+var can_hurt = true
 
 func _ready():
 	pass
@@ -43,13 +46,32 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		wobble.play("RESET")
 		particles.emitting = false
-		
+	
+	if hp == 4:
+		$"../CanvasLayer/Heart".visible = true
+		$"../CanvasLayer/Heart2".visible = true
+		$"../CanvasLayer/Heart3".visible = true
+		$"../CanvasLayer/Heart4".visible = true
+	elif hp == 3:
+		$"../CanvasLayer/Heart".visible = true
+		$"../CanvasLayer/Heart2".visible = true
+		$"../CanvasLayer/Heart3".visible = true
+		$"../CanvasLayer/Heart4".visible = false
 	if hp == 2:
+		$"../CanvasLayer/Heart".visible = true
+		$"../CanvasLayer/Heart2".visible = true
 		$"../CanvasLayer/Heart3".visible = false
+		$"../CanvasLayer/Heart4".visible = false
 	if hp == 1:
+		$"../CanvasLayer/Heart".visible = true
 		$"../CanvasLayer/Heart2".visible = false
+		$"../CanvasLayer/Heart3".visible = false
+		$"../CanvasLayer/Heart4".visible = false
 	if hp == 0:
 		$"../CanvasLayer/Heart".visible = false
+		$"../CanvasLayer/Heart2".visible = false
+		$"../CanvasLayer/Heart3".visible = false
+		$"../CanvasLayer/Heart4".visible = false
 		
 	if Input.is_action_pressed("right"):
 		particles.direction.x = 1
@@ -71,7 +93,15 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
+	if hp <= 0 or Input.is_action_just_pressed("reset"):
+		get_tree().reload_current_scene()
+	
 func collect():
+	if game.score == 0:
+		game.gavel_wait.start()
+		$"../GavelStuff/GavelMove".play("move_in")
+		$"../GavelStuff".visible = true
+	
 	game.score += 1
 	
 	var evidence = evidence_obj.instantiate()
@@ -83,13 +113,20 @@ func collect():
 	for h in get_tree().get_nodes_in_group("heart"):
 		h.queue_free()
 		
-	if rng.randi_range(1, 2) < 3:
-		var heart = heart_obj.instantiate()
+	if rng.randi_range(1, 8) == 1 and hp != 4:
+		var heart = heart_obj.instantiate()	
 		
 		heart_parent.global_position.x = rng.randf_range(-1.75, 1.75)
 		heart_parent.global_position.z = rng.randf_range(-0.1, 2)
 		heart_parent.global_position.y = 0.144
 		
-		print(heart_parent.global_position)
+		heart_parent.add_child(heart)
 		
-		heart_parent.add_child(evidence)
+func hurt():
+	if can_hurt:
+		hp -= 1
+		can_hurt = false
+		hurt_timer.start()
+
+func _on_hurt_timer_timeout() -> void:
+	can_hurt = true
