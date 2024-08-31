@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d35it2oju7dnn"]
+
+[ext_resource type="Texture2D" uid="uid://cm0pm7serp436" path="res://art/target.png" id="1_bj3ic"]
+[ext_resource type="Script" path="res://code/target.gd" id="1_d4u73"]
+[ext_resource type="AudioStream" uid="uid://cb4up75hs31xy" path="res://audio/shoot.wav" id="3_kmg3w"]
+
+[node name="Target" type="Node3D"]
+transform = Transform3D(0.968827, 0, 0, 0, 0.968827, 0, 0, 0, 0.968827, 0, 0, 0)
+script = ExtResource("1_d4u73")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.4175, 0, 0, 0, -6.19609e-08, 1.4175, 0, -1.4175, -6.19609e-08, 0, 0, 0)
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("1_bj3ic")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kmg3w")
+volume_db = -16.0
+autoplay = true

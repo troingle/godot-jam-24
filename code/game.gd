@@ -17,6 +17,15 @@ extends Node3D
 var anim_names = ["smash1", "smash2", "smash3"]
 var flash_anim_names = ["flash1", "flash2", "flash3"]
 
+@onready var target_obj = load("res://scenes/target.tscn")
+@onready var targets = $"../Targets"
+
+@onready var adding_timer = $AddingTimer
+
+@onready var bar = $"../Judge/Bar"
+
+@onready var fade_anim = $"../CanvasLayer/White/Anim"
+
 var phase = 1
 var score = 0
 
@@ -24,39 +33,87 @@ var gavel_num = 1
 var old_gavel_num = 1
 var original_gavel_time = 999
 
+var brought_in = false
+
+var last_pos = Vector3(9999, 0, 0)
+
 var rng = RandomNumberGenerator.new()
+
+@onready var dialogue_text = $"../Judge/Dialogue"
+var cutscene_running = true
+
+var dialogue = ["So you really want to prove 
+your innocence?", "I don't usually do this, and
+you were already proven to be guilty...", "But I will do anything
+to restore order in my courtroom.", "Your choice.", ""]
+var dialogue_num = 0
 
 func _ready():
 	original_gavel_time = gavel_wait.wait_time
 
 func _process(delta):
-	$"../CanvasLayer/EvidenceLabel".text = str(score)
+	$"../CanvasLayer/Hidden/EvidenceLabel".text = str(score)
 	if phase == 1:
 		gavel_wait.wait_time = original_gavel_time - score * 0.0
-		if score >= 20:
-			phase += 1
+		if score >= 20 and score < 45:
+			phase += 0.5
+			adding_timer.start()
 			gavel_move.play("move_out")
 			
-	elif phase == 2:
+	if phase == 2:
 		handle_saws(delta, true)
 		
 		if score >= 45:
+			phase += 0.5
+			adding_timer.start()
+			big_saw.global_position = Vector3(-5.631, 0.039, 0.89)
+			saw.global_position = Vector3(-5.631, 0.039, 0.89)
+
+	if phase == 3:
+		if score >= 55:
+			$"../GavelStuff".visible = true
+			if not brought_in:
+				brought_in = true
+				gavel_wait.start()
+				gavel_move.play("move_in")
+				gavel_wait.wait_time = 1.5
+		if score >= 75:
+			handle_saws(delta, false)
+		if score >= 100:
 			phase += 1
-			big_saw.global_position = Vector3(-4.631, 0.039, 0.89)
-			
-			saw.global_position = Vector3(-4.631, 0.039, 0.89)
-			
-	elif phase == 3:
+			big_saw.global_position = Vector3(-5.631, 0.039, 0.89)
+			saw.global_position = Vector3(-5.631, 0.039, 0.89)
+			$"../GavelStuff".visible = false
+			$"../Judge/AnimationPlayer".play("fall")
+			bar.visible = false
+			fade_anim.play("flash")
+		
+	if phase == 4:
 		pass
 		
-	#handle_saws(delta, false)
+	if dialogue_text.visible and Input.is_action_just_pressed("space"):
+		dialogue_num += 1
+		if dialogue_num == 4:
+			dialogue_text.visible = false
+			$"../Camera3D/CameraMove".play("move")
+			$"../CanvasLayer/ProceedTip".visible = false
+			cutscene_running = false
 		
-	if $"../GavelStuff".global_position.x >= 2.08:
+	dialogue_text.text = dialogue[dialogue_num]
+	
+	if $"../GavelStuff".global_position.x >= 2.08 and score <= 50:
 		$"../GavelStuff".visible = false
+		
+	if score != 0:
+		$"../Info".visible = false
+		$"../Judge/Bar".visible = true
+		$"../CanvasLayer/Hidden".visible = true
+		
+	bar.scale.x = (100 - score) * 1.5
 	
 
 func _on_gavel_wait_timeout():
-	if phase == 1:
+	if phase == 1 or (phase == 3 and score >= 55):
 		gavel_anim.play(anim_names[gavel_num])
 		
 		old_gavel_num = gavel_num
@@ -103,3 +160,15 @@ func handle_saws(delta, include_big):
 			big_saw.global_position.z -= big_saw.speed * delta
 			
 			
+func _on_spawn_target_timeout() -> void:
+	if phase == 3:
+		var target = target_obj.instantiate()
+		
+		target.position = last_pos #Vector3(player.position.x, 0.144, player.position.z)
+
+		targets.add_child(target)
+		
+		last_pos = player.global_position
+
+func _on_adding_timer_timeout() -> void:
+	phase += 0.5

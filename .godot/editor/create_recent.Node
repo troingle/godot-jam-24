@@ -1,4 +1,11 @@
+Control
 Node3D
-MeshInstance3D
-Timer
+AnimationPlayer
+Camera3D
+WorldEnvironment
+Label3D
+ColorRect
 Sprite3D
+Timer
+AudioStreamPlayer
+MeshInstance3D

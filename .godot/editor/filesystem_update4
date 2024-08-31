@@ -1,6 +1,11 @@
 res://scenes/game.tscn
-res://code/game.gd
-res://code/saw.gd
-res://code/player.gd
 res://scenes/player.tscn
+res://scenes/target.tscn
+res://code/target.gd
+res://code/game.gd
+res://code/player.gd
+res://code/evidence.gd
 res://code/heart.gd
+res://code/saw.gd
+res://scenes/cutscene.tscn
+res://code/global.gd

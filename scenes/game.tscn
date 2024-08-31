@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cfwvjtfusjlrm"]
+[gd_scene load_steps=44 format=4 uid="uid://cfwvjtfusjlrm"]
 
 [ext_resource type="Script" path="res://code/game.gd" id="1_11on1"]
 [ext_resource type="Texture2D" uid="uid://dk24feta27ks5" path="res://art/flat_plane.png" id="2_htrr6"]
@@ -11,6 +11,66 @@
 [ext_resource type="FontFile" uid="uid://dcm4odg10o6gq" path="res://fonts/SHPinscher-Regular.otf" id="9_4vvxs"]
 [ext_resource type="Texture2D" uid="uid://cl4hc166cunl7" path="res://art/saw.png" id="9_b3v0s"]
 [ext_resource type="Script" path="res://code/saw.gd" id="9_s73er"]
+
+[sub_resource type="Animation" id="Animation_crv8m"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.671, 0.362), Vector3(0, 2.471, 1.975)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0537385, 0, 0), Vector3(-1.01753, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_320fm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0172184, 0.671095, 0.361838)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0537385, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sjawg"]
+_data = {
+"RESET": SubResource("Animation_320fm"),
+"move": SubResource("Animation_crv8m")
+}
 
 [sub_resource type="Environment" id="Environment_5unjc"]
 
@@ -55,9 +115,26 @@ tracks/0/keys = {
 "values": [Vector3(0, 0.331665, -0.947815), Vector3(0, 0.506, -0.948)]
 }
 
+[sub_resource type="Animation" id="Animation_x6j0x"]
+resource_name = "fall"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.47616, -0.947815), Vector3(0, -1.51703, -0.947815)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dphxk"]
 _data = {
 "RESET": SubResource("Animation_m7ypt"),
+"fall": SubResource("Animation_x6j0x"),
 "hover": SubResource("Animation_fyehb")
 }
 
@@ -416,6 +493,42 @@ _data = {
 "flash3": SubResource("Animation_iguxl")
 }
 
+[sub_resource type="Animation" id="Animation_7pjc8"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.929412, 0.847059, 0.741176, 0), Color(0.929412, 0.847059, 0.741176, 1), Color(0.929412, 0.847059, 0.741176, 1), Color(0.929412, 0.847059, 0.741176, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_424nh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.929412, 0.847059, 0.741176, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_myxt7"]
+_data = {
+"RESET": SubResource("Animation_424nh"),
+"flash": SubResource("Animation_7pjc8")
+}
+
 [node name="Game" type="Node3D"]
 
 [node name="GameManager" type="Node3D" parent="."]
@@ -432,8 +545,22 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="SpawnTarget" type="Timer" parent="GameManager"]
+wait_time = 0.25
+autostart = true
+
+[node name="AddingTimer" type="Timer" parent="GameManager"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.526199, 0.850361, 0, -0.850361, 0.526199, 0, 2.432, 1.98834)
+transform = Transform3D(1, 0, 0, 0, 0.998556, 0.0537127, 0, -0.0537127, 0.998556, 0.0172184, 0.671095, 0.361838)
+fov = 80.0
+
+[node name="CameraMove" type="AnimationPlayer" parent="Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_sjawg")
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5unjc")
@@ -467,7 +594,7 @@ texture_filter = 0
 texture = ExtResource("2_htrr6")
 
 [node name="Player" parent="." instance=ExtResource("2_y67t5")]
-transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, 0, 0, 0.152097)
+transform = Transform3D(0.26, 0, 0, 0, 0.26, 0, 0, 0, 0.26, 0, 0, 0.374771)
 
 [node name="Judge" type="Sprite3D" parent="."]
 transform = Transform3D(2.54783, 0, 0, 0, 2.43646, 1.16274, 0, -0.745041, 3.80244, 0, 0.47616, -0.947815)
@@ -480,6 +607,20 @@ libraries = {
 "": SubResource("AnimationLibrary_dphxk")
 }
 autoplay = "hover"
+
+[node name="Bar" type="Sprite3D" parent="Judge"]
+transform = Transform3D(100, 0, 0, 0, 2.485, -7.19573e-08, 0, 1.78814e-07, 1, 0, 0.351601, 0.0131855)
+visible = false
+texture = ExtResource("7_pin6g")
+
+[node name="Dialogue" type="Label3D" parent="Judge"]
+transform = Transform3D(0.0463257, 0, 0, 0, 0.0462548, -0.00256337, 0, 0.00256338, 0.0462547, 0, 0.448621, 0.00200836)
+modulate = Color(0.929412, 0.847059, 0.741176, 1)
+text = "\"So you really want to prove 
+your innocence?\""
+font = ExtResource("9_4vvxs")
+font_size = 500
+outline_size = 0
 
 [node name="EvidenceParent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.814358, 0, 0.778765)
@@ -585,7 +726,7 @@ libraries = {
 }
 
 [node name="Sawblade" type="Node3D" parent="."]
-transform = Transform3D(0.737782, 0, 0, 0, 0.737782, 0, 0, 0, 0.737782, -4.63148, 0.0389676, 0.890289)
+transform = Transform3D(0.737782, 0, 0, 0, 0.737782, 0, 0, 0, 0.737782, -5.676, 0.0389676, 0.890289)
 script = ExtResource("9_s73er")
 
 [node name="Sprite3D" type="Sprite3D" parent="Sawblade"]
@@ -595,9 +736,9 @@ render_priority = 2
 texture = ExtResource("9_b3v0s")
 
 [node name="BigSaw" type="Node3D" parent="."]
-transform = Transform3D(1.67179, 0, 0, 0, 1.67179, 0, 0, 0, 1.67179, -4.67609, 0, 0.900186)
+transform = Transform3D(1.67179, 0, 0, 0, 1.67179, 0, 0, 0, 1.67179, -5.676, 0, 0.900186)
 script = ExtResource("9_s73er")
-speed = 0.6
+speed = 0.5
 
 [node name="Sprite3D" type="Sprite3D" parent="BigSaw"]
 transform = Transform3D(1.14984, 0, 0, 0, 0.2976, 1.11066, 0, -1.11066, 0.2976, 0, 0, 0)
@@ -605,33 +746,48 @@ texture_filter = 0
 render_priority = 1
 texture = ExtResource("9_b3v0s")
 
+[node name="Targets" type="Node3D" parent="."]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Heart" type="Sprite2D" parent="CanvasLayer"]
+[node name="Hidden" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart" type="Sprite2D" parent="CanvasLayer/Hidden"]
 texture_filter = 1
 position = Vector2(42, 42)
 scale = Vector2(1.51984, 1.51984)
 texture = ExtResource("5_euh3a")
 
-[node name="Heart2" type="Sprite2D" parent="CanvasLayer"]
+[node name="Heart2" type="Sprite2D" parent="CanvasLayer/Hidden"]
 texture_filter = 1
 position = Vector2(110, 42)
 scale = Vector2(1.51984, 1.51984)
 texture = ExtResource("5_euh3a")
 
-[node name="Heart3" type="Sprite2D" parent="CanvasLayer"]
+[node name="Heart3" type="Sprite2D" parent="CanvasLayer/Hidden"]
 texture_filter = 1
 position = Vector2(178, 42)
 scale = Vector2(1.51984, 1.51984)
 texture = ExtResource("5_euh3a")
 
-[node name="Heart4" type="Sprite2D" parent="CanvasLayer"]
+[node name="Heart4" type="Sprite2D" parent="CanvasLayer/Hidden"]
 texture_filter = 1
 position = Vector2(246, 42)
 scale = Vector2(1.51984, 1.51984)
 texture = ExtResource("5_euh3a")
 
-[node name="EvidenceLabel" type="Label" parent="CanvasLayer"]
+[node name="Heart5" type="Sprite2D" parent="CanvasLayer/Hidden"]
+texture_filter = 1
+position = Vector2(313, 42)
+scale = Vector2(1.51984, 1.51984)
+texture = ExtResource("5_euh3a")
+
+[node name="EvidenceLabel" type="Label" parent="CanvasLayer/Hidden"]
 offset_left = 16.0
 offset_top = 70.0
 offset_right = 1526.0
@@ -642,9 +798,41 @@ theme_override_fonts/font = ExtResource("9_4vvxs")
 theme_override_font_sizes/font_size = 500
 text = "19/20"
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71958, 0.11351, -0.179667)
+[node name="ProceedTip" type="Label" parent="CanvasLayer"]
+offset_left = 827.0
+offset_top = 540.0
+offset_right = 3902.0
+offset_bottom = 1140.0
+scale = Vector2(0.0992545, 0.0992545)
+theme_override_colors/font_color = Color(0.929412, 0.847059, 0.741176, 1)
+theme_override_fonts/font = ExtResource("9_4vvxs")
+theme_override_font_sizes/font_size = 500
+text = "SPACE TO PROCEED"
+horizontal_alignment = 2
+
+[node name="White" type="ColorRect" parent="CanvasLayer"]
+offset_left = -23.0
+offset_top = -22.0
+offset_right = 1176.0
+offset_bottom = 669.0
+color = Color(0.929412, 0.847059, 0.741176, 0)
+
+[node name="Anim" type="AnimationPlayer" parent="CanvasLayer/White"]
+libraries = {
+"": SubResource("AnimationLibrary_myxt7")
+}
+
+[node name="Info" type="Label3D" parent="."]
+transform = Transform3D(0.133449, 0, 0, 0, -5.83323e-09, 0.133449, 0, -0.133449, -5.83323e-09, 0, 0.0378543, 1.60829)
+modulate = Color(0.929412, 0.847059, 0.741176, 1)
+text = "COLLECT EVIDENCE
+TO START"
+font = ExtResource("9_4vvxs")
+font_size = 500
+outline_size = 0
 
 [connection signal="timeout" from="GameManager/GavelWait" to="GameManager" method="_on_gavel_wait_timeout"]
 [connection signal="timeout" from="GameManager/WarningShowTimer" to="GameManager" method="_on_warning_show_timer_timeout"]
 [connection signal="timeout" from="GameManager/AttackTimer" to="GameManager" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="GameManager/SpawnTarget" to="GameManager" method="_on_spawn_target_timeout"]
+[connection signal="timeout" from="GameManager/AddingTimer" to="GameManager" method="_on_adding_timer_timeout"]
