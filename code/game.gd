@@ -44,12 +44,13 @@ var cutscene_running = true
 
 var dialogue = ["So you really want to prove 
 your innocence?", "I don't usually do this, and
-you were already proven to be guilty...", "But I will do anything
-to restore order in my courtroom.", "Your choice.", ""]
+you have already been proven guilty...", "But I will do anything
+to restore order in my courtroom.", "It's your choice.", ""]
 var dialogue_num = 0
 
 func _ready():
 	original_gavel_time = gavel_wait.wait_time
+	Music.stop()
 
 func _process(delta):
 	$"../CanvasLayer/Hidden/EvidenceLabel".text = str(score)
@@ -70,16 +71,16 @@ func _process(delta):
 			saw.global_position = Vector3(-5.631, 0.039, 0.89)
 
 	if phase == 3:
-		if score >= 55:
+		if score >= 58:
 			$"../GavelStuff".visible = true
 			if not brought_in:
 				brought_in = true
 				gavel_wait.start()
 				gavel_move.play("move_in")
 				gavel_wait.wait_time = 1.5
-		if score >= 75:
+		if score >= 79:
 			handle_saws(delta, false)
-		if score >= 100:
+		if score >= 87:
 			phase += 1
 			big_saw.global_position = Vector3(-5.631, 0.039, 0.89)
 			saw.global_position = Vector3(-5.631, 0.039, 0.89)
@@ -87,16 +88,21 @@ func _process(delta):
 			$"../Judge/AnimationPlayer".play("fall")
 			bar.visible = false
 			fade_anim.play("flash")
+			if Music.is_playing():
+				print("Stop")
+				Music.stop()
+				$Explode.play()
+			player.proceed_timer.start()
 		
-	if phase == 4:
-		pass
-		
+
 	if dialogue_text.visible and Input.is_action_just_pressed("space"):
+		player.bump_sound.play()
 		dialogue_num += 1
 		if dialogue_num == 4:
 			dialogue_text.visible = false
 			$"../Camera3D/CameraMove".play("move")
 			$"../CanvasLayer/ProceedTip".visible = false
+			$"../Intro".stop()
 			cutscene_running = false
 		
 	dialogue_text.text = dialogue[dialogue_num]
@@ -104,16 +110,19 @@ func _process(delta):
 	if $"../GavelStuff".global_position.x >= 2.08 and score <= 50:
 		$"../GavelStuff".visible = false
 		
-	if score != 0:
+	if score != 0 and score < 86:
 		$"../Info".visible = false
 		$"../Judge/Bar".visible = true
 		$"../CanvasLayer/Hidden".visible = true
+		if !Music.is_playing():
+			Music.play()
+
 		
-	bar.scale.x = (100 - score) * 1.5
+	bar.scale.x = (87 - score) * 1.7
 	
 
 func _on_gavel_wait_timeout():
-	if phase == 1 or (phase == 3 and score >= 55):
+	if phase == 1 or (phase == 3 and score >= 58):
 		gavel_anim.play(anim_names[gavel_num])
 		
 		old_gavel_num = gavel_num
@@ -134,10 +143,15 @@ func _on_attack_timer_timeout():
 	
 	if player.global_position.z < 0.459 and old_gavel_num == 0:
 		player.hp -= 1
+		player.hurt_sound.play()
 	elif player.global_position.z > 0.459 and player.global_position.z < 1.332 and old_gavel_num == 1:
 		player.hp -= 1
+		player.hurt_sound.play()
 	elif player.global_position.z > 1.33 and old_gavel_num == 2:
 		player.hp -= 1
+		player.hurt_sound.play()
+	
+	player.bump_sound.play()
 		
 func handle_saws(delta, include_big):
 	if saw.global_position.x < player.global_position.x:

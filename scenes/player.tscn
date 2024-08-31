@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cak8hrbijhgrl"]
+[gd_scene load_steps=12 format=3 uid="uid://cak8hrbijhgrl"]
 
 [ext_resource type="Texture2D" uid="uid://cl2g64ot01k2q" path="res://art/player_front.png" id="1_1e2en"]
 [ext_resource type="Script" path="res://code/player.gd" id="1_6n21x"]
+[ext_resource type="AudioStream" uid="uid://bqmpik607hekg" path="res://audio/pickup.wav" id="3_t1jfk"]
+[ext_resource type="AudioStream" uid="uid://c7lwvf4et2dqh" path="res://audio/hurt.wav" id="4_p1uem"]
+[ext_resource type="AudioStream" uid="uid://dykd67t5iith4" path="res://audio/bump.wav" id="5_kmt8s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rrin8"]
 height = 1.5
@@ -91,4 +94,17 @@ scale_amount_max = 0.06
 wait_time = 1.2
 one_shot = true
 
+[node name="ProceedTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Collect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t1jfk")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p1uem")
+
+[node name="Bump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kmt8s")
+
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="ProceedTimer" to="." method="_on_proceed_timer_timeout"]

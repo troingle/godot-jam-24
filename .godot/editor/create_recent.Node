@@ -1,3 +1,6 @@
+AudioStreamPlayer
+Label
+Timer
 Control
 Node3D
 AnimationPlayer
@@ -6,6 +9,4 @@ WorldEnvironment
 Label3D
 ColorRect
 Sprite3D
-Timer
-AudioStreamPlayer
 MeshInstance3D

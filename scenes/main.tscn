@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://pvuub84q2gst"]
+
+[ext_resource type="Script" path="res://code/end.gd" id="1_o8x35"]
+[ext_resource type="FontFile" uid="uid://dcm4odg10o6gq" path="res://fonts/SHPinscher-Regular.otf" id="2_lf7df"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_o8x35")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.929412, 0.847059, 0.741176, 1)
+offset_right = 12296.0
+offset_bottom = 6956.0
+scale = Vector2(0.0934436, 0.0934436)
+theme_override_fonts/font = ExtResource("2_lf7df")
+theme_override_font_sizes/font_size = 495
+text = "Space to begin"
+horizontal_alignment = 1
+vertical_alignment = 1

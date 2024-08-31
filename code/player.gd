@@ -16,6 +16,12 @@ extends CharacterBody3D
 
 @onready var hurt_timer = $HurtTimer
 
+@onready var hurt_sound = $Hurt
+@onready var collect_sound = $Collect
+@onready var bump_sound = $Bump
+
+@onready var proceed_timer = $ProceedTimer
+
 const SPEED = 2.5
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -48,7 +54,7 @@ func _physics_process(delta):
 		particles.emitting = false
 	
 	handle_hp()
-		
+	
 	if Input.is_action_pressed("right"):
 		particles.direction.x = 1
 		particles.direction.z = 0
@@ -70,8 +76,8 @@ func _physics_process(delta):
 	if not game.cutscene_running:
 		move_and_slide()
 	
-	#if hp <= 0 or Input.is_action_just_pressed("reset"):
-		#get_tree().reload_current_scene()
+	if hp <= 0 or Input.is_action_just_pressed("reset"):
+		get_tree().reload_current_scene()
 	
 func collect():
 	if game.score == 0:
@@ -80,6 +86,7 @@ func collect():
 		$"../GavelStuff".visible = true
 	
 	game.score += 1
+	$Collect.play()
 	
 	var evidence = evidence_obj.instantiate()
 	parent.global_position.x = rng.randf_range(0.3, 1.75) * side
@@ -90,7 +97,7 @@ func collect():
 	for h in get_tree().get_nodes_in_group("heart"):
 		h.queue_free()
 		
-	if rng.randi_range(1, 6) == 1 and hp != 5:
+	if rng.randi_range(1, 5) == 1 and hp != 5:
 		var heart = heart_obj.instantiate()	
 		
 		heart_parent.global_position.x = rng.randf_range(-1.75, 1.75)
@@ -102,6 +109,7 @@ func collect():
 func hurt():
 	if can_hurt:
 		hp -= 1
+		$Hurt.play()
 		can_hurt = false
 		hurt_timer.start()
 
@@ -145,3 +153,7 @@ func handle_hp():
 		$"../CanvasLayer/Hidden/Heart3".visible = false
 		$"../CanvasLayer/Hidden/Heart4".visible = false
 		$"../CanvasLayer/Hidden/Heart5".visible = false
+
+
+func _on_proceed_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/end.tscn")

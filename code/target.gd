@@ -7,7 +7,7 @@ var shrink_speed = 2
 
 func _ready():
 	if global_position == player.global_position: 	#global_position.distance_to(player.global_position) < 0.1:
-			player.hurt()
+		player.hurt()
 
 func _process(delta: float) -> void:
 	scale.x -= shrink_speed * delta

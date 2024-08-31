@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c30au1dlaalgu"]
+
+[ext_resource type="FontFile" uid="uid://dcm4odg10o6gq" path="res://fonts/SHPinscher-Regular.otf" id="1_4ewlu"]
+[ext_resource type="Script" path="res://code/end.gd" id="1_yv3j0"]
+[ext_resource type="AudioStream" uid="uid://b1tora3t6uciu" path="res://audio/outro.wav" id="3_m3fgi"]
+
+[node name="End" type="Node2D"]
+script = ExtResource("1_yv3j0")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 12296.0
+offset_bottom = 6956.0
+scale = Vector2(0.0934436, 0.0934436)
+theme_override_fonts/font = ExtResource("1_4ewlu")
+theme_override_font_sizes/font_size = 400
+text = "Thanks for playing!
+
+Made for Godot Jam Round 2
+
+Press Space to return to main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m3fgi")
+autoplay = true
